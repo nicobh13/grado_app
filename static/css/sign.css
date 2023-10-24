@@ -1,0 +1,148 @@
+@charset "utf-8";
+/*CSS Documento*/
+/* Basic styling for the container */
+.container {
+  min-width: 70vw;
+  max-width: 90%;
+  min-height: 65vh;
+  margin: 10vh 15vw;
+  display: flex;
+  background-image: url("/static/images/login.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(80%);
+}
+
+/* Styling for the login section */
+.change-section {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1.4vw;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Styling for the register section */
+.input-section {
+  width: 55%;
+  background-color: #394149;
+  padding: 20px;
+}
+
+/* Styling for the form elements */
+.form-group {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+input[type="text"],
+input[type="tel"],
+select,
+input[type="password"] {
+  width: 45%;
+}
+
+input[type="email"] {
+  width: 95%;
+}
+
+/* Styling for the checkboxes */
+input[type="checkbox"] {
+  margin: 10px;
+}
+
+/* Styling for the register button */
+.submit-button {
+  background-color: #e9eceb;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 2.2vh;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+}
+
+select {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+input[type="checkbox"],
+input[type="password"],
+label {
+  font-size: 1.7vh;
+}
+
+div.text {
+  font-size: 1.7vh;
+  color: #e9eceb;
+}
+
+h3.title-font {
+  font-size: 2.5vh;
+}
+
+/* CSS for sliding animations */
+.slide-right {
+  transform: translateX(132%);
+}
+
+.slide-left {
+  transform: translateX(-76%);
+  /* Slide left */
+}
+
+.slide-right,
+.slide-left {
+  transform-origin: center center;
+}
+
+.error {
+  font-size: 1.2vh;
+  color: rgb(255, 176, 176);
+}
+
+.change-section,
+.input-section,
+#registration-form,
+#login-form {
+  transition: transform 0.5s ease;
+}
+
+.sub {
+  text-align: center;
+  width: 100%;
+}
+
+.form-group, .error{
+  display: flex;
+}
+
+span{
+  width: 50%;
+}

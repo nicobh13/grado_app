@@ -1,0 +1,53 @@
+<h3 style="text-align: center; font-size: 2.4vh">Regístrate</h3>
+<p class="sub">Sé un miembro de nuestra institución</p>
+
+<form id="registro-form">
+  <div class="form-group">
+    <input type="text" placeholder="Primer Nombre" id="p-nombre" name="p-nombre" />
+    <input type="text" placeholder="Segundo Nombre" id="s-nombre" name="s-nombre" />
+  </div>
+  <div class="error">
+    <span id="p-nombreError"></span>
+    <span id="s-nombreError"></span>
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="Primer Apellido" id="p-apell" name="p-apell" />
+    <input type="text" placeholder="Segundo Apellido" id="s-apell" name="s-apell" />
+  </div>
+  <div class="error">
+    <span id="p-apellError"></span>
+    <span id="s-apellError"></span>
+  </div>
+
+  <input type="email" placeholder="Correo Electrónico" id="email" name="email" />
+  <div class="error" id="emailError"></div>
+  <div class="form-group">
+    <input type="tel" placeholder="Número de Celular" id="tel" name="tel" />
+
+    <select id="rol" name="rol">
+      <option value="" disabled selected hidden>Rol en la institución</option>
+      <option value="docente">Docente</option>
+      <option value="directivo">Directivo</option>
+      <option value="estudiante">Estudiante</option>
+      <option value="padre">Padre de Familia</option>
+    </select>
+  </div>
+  <span class="error" id="telError"></span>
+  <div class="form-group">
+    <input type="password" placeholder="Contraseña" name="pass" />
+    <input type="text" placeholder="Código" id="code" name="code" />
+  </div>
+  <div class="error">
+    <span id="pass-error"></span>
+    <span id="code-error"></span>
+  </div>
+  <div>
+    <input type="checkbox" id="consent-checkbox" name="consent" />
+    <label for="consent-checkbox">
+      Consiento el uso de mis datos personales por parte de la institución
+      educativa</label
+    >
+    <span class="error" id="consent-error"></span>
+  </div>
+  <button class="submit-button text" name="registrar">Registrarse</button>
+</form>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include ('part/head_gen.html')%}
+
+    <!--Hoja de estilos-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/talleres.css')}}"
+      type="text/css"
+    />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+    <script src="{{ url_for('static', filename = 'js/talleres.js')}}"></script>
+
+    <title>Especialidades</title>
+  </head>
+
+  <body>
+    <!--Primeros elementos de la página-->
+    <header>
+      {% include 'part/banner.html' %} {% include 'part/menu.html' %} {% include
+      ('part/footer.html')%}
+    </header>
+  </body>
+</html>

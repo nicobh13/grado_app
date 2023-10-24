@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include ('part/gen/head_gen.html')%}
+
+    <!--Hoja de estilos-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/index.css')}}"
+      type="text/css"
+    />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+    <script src="{{ url_for('static', filename = 'js/index.js')}}"></script>
+
+    <title>Instituto Técnico Superior</title>
+  </head>
+  <body>
+    <!--Primeros elementos de la página-->
+    <header>
+      {% include 'part/index/banner_in.html' %} {% include 'part/gen/menu.html'
+      %}
+
+      <!--Fondo y Texto de los 80 Años-->
+      <div class="head-color">
+        <p class="celeb-80">
+          En celebración de los
+          <br />
+          <span style="font-size: 9vw; color: #f4b62a"
+            ><strong>80</strong></span
+          >
+          años de la institución
+        </p>
+      </div>
+
+      <div>
+        <!--Imágen de Celebración por los 80 años-->
+        <img
+          src="{{ url_for('static', filename = 'images/IMG-20230731-WA0008.jpg')}}"
+          class="head-img"
+        />
+      </div>
+      <!--Efecto de difuminado-->
+      <div class="fade"></div>
+    </header>
+
+    <!--Sección 1: Talleres-->
+    <div>
+      <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+        Conoce más sobre nuestra institución {{texto}}
+      </p>
+      <div class="hor-line"></div>
+
+      <!--Slider Animado Talleres-->
+      <div class="talleres-slider">
+        <div class="t-slide" style="background-color: rgb(7, 43, 90)">
+          <h2 class="taller">Informática</h2>
+          <div class="content text">
+            <p>Contenido de Informática</p>
+          </div>
+        </div>
+
+        <div class="t-slide" style="background-color: #8d660a">
+          <h2 class="taller">Electricidad</h2>
+          <div class="content text">
+            <p>Contenido de Electricidad</p>
+          </div>
+        </div>
+
+        <div class="t-slide" style="background-color: rgb(50, 90, 4)">
+          <h2 class="taller">Diseño</h2>
+          <div class="content text">
+            <p>Contenido de Diseño</p>
+          </div>
+        </div>
+
+        <div class="t-slide" style="background-color: rgb(78, 3, 22)">
+          <h2 class="taller">Mecánica</h2>
+          <div class="content text">
+            <p>Contenido de Mecánica</p>
+          </div>
+        </div>
+
+        <!--Archivo JavaScript para el slider-->
+      </div>
+    </div>
+
+    <!--Sección 2: Mapa Interactivo-->
+    <div class="sep">
+      <p
+        class="title-font"
+        style="
+          position: relative;
+          width: 20vw;
+          height: 100%;
+          padding: 0 5vw 0 20vw;
+        "
+      >
+        Nuestras instalaciones
+      </p>
+
+      <!--Animación Vista Previa del Mapa-->
+      <div class="mapa-prev"></div>
+    </div>
+
+    <!--Sección 3: Personal-->
+    <div>
+      <!--Directivos-->
+      <div class="teacher-slider">
+        <div class="teach-sl-title title-font">Directivos</div>
+        <div class="slider-teachers">
+          <div class="slider-photos">
+            {%include ('part/gen/teacher_card.html')%}
+          </div>
+        </div>
+      </div>
+
+      <!--Docentes-->
+      <div class="teacher-slider">
+        <div class="slider-teachers">
+          <div class="slider-photos">
+            {%include ('part/gen/teacher_card.html')%}
+          </div>
+        </div>
+        <div class="teach-sl-title title-font">Docentes</div>
+      </div>
+    </div>
+      {% include ('part/gen/footer.html')%}
+  </body>
+</html>

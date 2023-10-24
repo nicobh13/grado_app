@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include ('part/gen/head_gen.html')%}
+
+    <!--Hoja de estilos-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/sign.css')}}"
+      type="text/css"
+    />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+    <script src="{{ url_for('static', filename = 'js/sign.js')}}"></script>
+
+    <title>Iniciar Sesión</title>
+  </head>
+  <body>
+    <!--Primeros elementos de la página-->
+    <header>
+      {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+
+      <div class="container">
+        <div class="change-section">
+          <button id="change-button" class="change-button text"></button>
+        </div>
+        <div class="input-section text">
+          <div id="login-form">{% include 'part/sign_up/login.html' %}</div>
+          <div id="registration-form" style="display: none">
+            {% include 'part/sign_up/registro.html' %}
+          </div>
+        </div>
+      </div>
+
+      {%include ('part/gen/footer.html')%}
+    </header>
+  </body>
+</html>
