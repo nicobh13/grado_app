@@ -16,13 +16,18 @@
     <!--Javascript para el sitio-->
     <script src="{{ url_for('static', filename = 'js/sign.js')}}"></script>
 
-    <title>Iniciar Sesión</title>
+    <title>Iniciar Sesión o Registrarse</title>
   </head>
   <body>
     <!--Primeros elementos de la página-->
     <header>
       {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
 
+          </div>
+        </div>
+      </div>
+
+    </header>
       <div class="container">
         <div class="change-section">
           <button id="change-button" class="change-button text"></button>
@@ -30,12 +35,9 @@
         <div class="input-section text">
           <div id="login-form">{% include 'part/sign_up/login.html' %}</div>
           <div id="registration-form" style="display: none">
-            {% include 'part/sign_up/registro.html' %}
-          </div>
-        </div>
-      </div>
-
+            {% include 'part/sign_up/registro.html' %}</div>
+            </div>
+            </div>
       {%include ('part/gen/footer.html')%}
-    </header>
   </body>
 </html>
