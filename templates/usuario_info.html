@@ -30,7 +30,7 @@
     <form method="POST" action="/user_info/{{nombre_actualizar.id}}" style="
         min-width: 70vw;
         max-width: 90%;
-        min-height: 65vh;
+        min-height: 40vh;
         margin: 5vh 15vw 10vh;
       ">
         {{ form.hidden_tag()}}
@@ -61,6 +61,7 @@
 
         {{ form.update(class="update-button text")}}
     </form>
+    {%include ('part/gen/footer.html')%}
 </body>
 
 </html>
