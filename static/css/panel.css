@@ -1,0 +1,22 @@
+@charset "utf-8";
+/*CSS Documento*/
+
+.user-list{
+    font-size: 2vh;
+    margin: 0 15vw 5vh;
+    min-height: 40vh;
+
+}
+.odd {
+    background-color: #cacaca;
+    /* Color de fondo para filas impares */
+}
+
+.user-list .hoverable:hover {
+    background-color: #65756f;
+    /* Cambia el color de fondo al hacer hover */
+    color: #ffffff;
+    /* Cambia el color del texto al hacer hover */
+    cursor: pointer;
+    /* Cambia el cursor al hacer hover para indicar que es interactivo */
+}

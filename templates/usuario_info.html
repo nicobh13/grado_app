@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%include ('part/gen/head_gen.html')%}
+
+    <!--Hoja de estilos-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/form.css')}}" type="text/css" />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <title>Perfil</title>
+</head>
+
+<body>
+    <!--Primeros elementos de la página-->
+    <header>
+        {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+    </header>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+  <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% endwith %}
+    <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+        Actualizar Usuario
+    </p>
+    <div class="hor-line"></div>
+    <form method="POST" action="/user_info/{{nombre_actualizar.id}}" style="
+        min-width: 70vw;
+        max-width: 90%;
+        min-height: 65vh;
+        margin: 5vh 15vw 10vh;
+      ">
+        {{ form.hidden_tag()}}
+        <div class="form-group">
+            {{ form.nombre(class="input_reg text", value=nombre_actualizar.nombre)}}
+            {{ form.seg_nombre(class="input_reg text",
+            value=nombre_actualizar.seg_nombre)}}
+        </div>
+        <div class="form-group">
+            {{ form.apellido(class="input_reg text",
+            value=nombre_actualizar.apellido)}} {{
+            form.seg_apellido(class="input_reg text",
+            value=nombre_actualizar.seg_apellido)}}
+        </div>
+        {{ form.email(class="input_log text", value=nombre_actualizar.email)}}
+        <div class="form-group">
+            {{ form.tel(class="input_reg text", value=nombre_actualizar.tel) }}
+            <select name="rol_id" class="input_reg select text">
+                {% for choice, label in form.rol_id.choices %}
+                <option value="{{ choice }}" {% if choice==nombre_actualizar.rol_id %}selected{% endif %}>
+                    {{ label }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        </div>
+
+
+        {{ form.update(class="update-button text")}}
+    </form>
+</body>
+
+</html>

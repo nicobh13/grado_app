@@ -1,0 +1,142 @@
+@charset "utf-8";
+/*CSS Documento*/
+/* Basic styling for the container */
+.checkbox{
+  margin: 10px 0;
+  cursor: pointer;
+  font-size: 1.5vh;
+}
+
+.container {
+  min-width: 70vw;
+  max-width: 90%;
+  min-height: 65vh;
+  margin: 5vh 15vw 10vh;
+  display: flex;
+  background-image: url("/static/images/login.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(80%);
+}
+
+/* Styling for the login section */
+.change-section {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1.4vw;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Styling for the register section */
+.input-section {
+  width: 55%;
+  background-color: #394149;
+  padding: 20px;
+}
+
+/* Styling for the form elements */
+.form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.input_reg{
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px 0;
+  width: 45%;
+  font-size: 1.7vh;
+}
+
+.input_log{
+  padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    width: 95%;
+    font-size: 1.7vh;
+  }
+
+
+/* Styling for the register button */
+.submit-button {
+  display: block;
+  background-color: #e9eceb;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 2.2vh;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.update-button {
+  display: block;
+  background-color: #171b1a;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 2.2vh;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  color:#e9eceb;
+}
+
+.select {
+  cursor: pointer;
+}
+
+
+div.text {
+  font-size: 1.7vh;
+  color: #e9eceb;
+}
+
+h3.title-font {
+  font-size: 2.5vh;
+}
+
+/* CSS for sliding animations */
+.slide-right {
+  transform: translateX(132%);
+}
+
+.slide-left {
+  transform: translateX(-76%);
+  /* Slide left */
+}
+
+.slide-right,
+.slide-left {
+  transform-origin: center center;
+}
+
+
+.change-section,
+.input-section,
+#registration-form,
+#login-form {
+  transition: transform 0.5s ease;
+}
+
+.sub {
+  text-align: center;
+  width: 100%;
+}
+
+

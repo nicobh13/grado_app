@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%include ('part/gen/head_gen.html')%}
+
+    <!--Hoja de estilos-->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename = 'css/panel.css')}}"
+      type="text/css"
+    />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+    <script src="{{ url_for('static', filename = 'js/panel.js')}}"></script>
+
+    <title>Perfil</title>
+  </head>
+
+  <body>
+    <!--Primeros elementos de la página-->
+    <header>
+      {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+    </header>
+    <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+      Listado de Usuarios
+    </p>
+    <div class="hor-line"></div>
+    {% set counter = 0 %}
+    <div class="user-list text">
+      {% for usuario in usuarios %}
+      <a href="{{url_for('user_info', id=usuario.id)}}">
+      <div class="{{ 'odd hoverable' if loop.index % 2 == 1 else 'hoverable' }}">
+        <p style="width: 10%;
+        line-height: 1.5;">({{ usuario.rol.rol }})</p>
+        {{ usuario.apellido }} {{ usuario.seg_apellido }} {{ usuario.nombre }}
+        {{ usuario.seg_nombre }}
+        <br />
+      </div></a>
+      {% endfor %}
+    </div>
+    {%include ('part/gen/footer.html')%}
+  </body>
+</html>
