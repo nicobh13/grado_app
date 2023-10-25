@@ -6,6 +6,7 @@ from wtforms import StringField, PasswordField, SubmitField, EmailField, TelFiel
 from wtforms.validators import InputRequired, Length, Optional, ValidationError, Email, DataRequired
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
+from datetime import datetime
 
 
 app=Flask(__name__)
@@ -44,6 +45,7 @@ class Usuario(db.Model, UserMixin):
     tel = db.Column(db.String(10), nullable=False)
     rol_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     contrasena = db.Column(db.String(255), nullable=False)
+    fecha_registro = db.Column(db.DateTime, default = datetime.utcnow)
 
     # Relación con la tabla "roles"
     rol = db.relationship('Rol') 
