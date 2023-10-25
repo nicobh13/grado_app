@@ -46,6 +46,7 @@ class Usuario(db.Model, UserMixin):
     rol_id = db.Column(db.Integer, db.ForeignKey('roles.id'), nullable=False)
     contrasena = db.Column(db.String(255), nullable=False)
     fecha_registro = db.Column(db.DateTime, default = datetime.utcnow)
+    fecha_actualizado = db.Column(db.DateTime, onupdate=datetime.utcnow)
 
     # Relación con la tabla "roles"
     rol = db.relationship('Rol') 
