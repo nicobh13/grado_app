@@ -2,26 +2,26 @@
 <html>
 
 <head>
-    {%include ('part/head_gen.html')%}
+    {%include ('part/gen/head_gen.html')%}
 
     <!--Hoja de estilos-->
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/talleres.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
 
     <!--Ícono shortcut-->
     <link rel="shortcut icon" href="images/shortcut.png" />
 
     <!--Javascript para el sitio-->
-    <script src="{{ url_for('static', filename = 'js/talleres.js')}}"></script>
+    <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
 
-    <title>Especialidades</title>
+    <title>Perfil</title>
 </head>
 
 <body>
     <!--Primeros elementos de la página-->
     <header>
-        {% include 'part/banner.html' %} {% include 'part/menu.html' %} {% include
-        ('part/footer.html')%}
+        {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
     </header>
+    {%include ('part/gen/footer.html')%}
 </body>
 
 </html>

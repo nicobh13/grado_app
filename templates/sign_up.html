@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    {%include ('part/gen/head_gen.html')%}
 
-    <!--Hoja de estilos-->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename = 'css/sign.css')}}"
-      type="text/css"
-    />
+<head>
+  {%include ('part/gen/head_gen.html')%}
 
-    <!--Ícono shortcut-->
-    <link rel="shortcut icon" href="images/shortcut.png" />
+  <!--Hoja de estilos-->
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/form.css')}}" type="text/css" />
 
-    <!--Javascript para el sitio-->
-    <script src="{{ url_for('static', filename = 'js/sign.js')}}"></script>
+  <!--Ícono shortcut-->
+  <link rel="shortcut icon" href="images/shortcut.png" />
 
-    <title>Iniciar Sesión o Registrarse</title>
-  </head>
-  <body>
-    <!--Primeros elementos de la página-->
-    <header>
-      {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+  <!--Javascript para el sitio-->
+  <script src="{{ url_for('static', filename = 'js/sign.js')}}"></script>
 
-          </div>
-        </div>
-      </div>
+  <title>Iniciar Sesión o Registrarse</title>
+</head>
 
-    </header>
-      <div class="container">
-        <div class="change-section">
-          <button id="change-button" class="change-button text"></button>
-        </div>
-        <div class="input-section text">
-          <div id="login-form">{% include 'part/sign_up/login.html' %}</div>
-          <div id="registration-form" style="display: none">
-            {% include 'part/sign_up/registro.html' %}</div>
-            </div>
-            </div>
-      {%include ('part/gen/footer.html')%}
-  </body>
+<body>
+  <!--Primeros elementos de la página-->
+  <header>
+    {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+
+    </div>
+    </div>
+    </div>
+
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+  <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% endwith %} <div class="container">
+    <div class="change-section">
+      <button id="change-button" class="change-button text"></button>
+    </div>
+    <div class="input-section text">
+      <div id="login-form">{% include 'part/sign_up/login.html' %}</div>
+      <div id="registration-form" style="display: none">
+        {% include 'part/sign_up/registro.html' %}</div>
+    </div>
+  </div>
+  {%include ('part/gen/footer.html')%}
+</body>
+
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, flash
+from flask import Flask, render_template, url_for, redirect, flash, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -73,14 +73,12 @@ class RegistrationForm(FlaskForm):
         message='Debe ingresar un número de teléfono válido')],
         render_kw={'placeholder':'Teléfono'})
     
-    rol_id = SelectField('Rol',validators=[InputRequired(
-        message='Debe ingresar un rol')],
-        choices=[
-                ('2', 'Soy estudiante'),
-                ('3', 'Soy docente'),
-                ('4', 'Soy directivo'),
-                ('5', 'Soy padre de Familia')
-        ])    
+    rol_id = SelectField('Rol', coerce=int, validators=[InputRequired()])
+
+    def __init__(self):
+        super(RegistrationForm, self).__init__()
+        self.rol_id.choices = [(rol.id, rol.rol) for rol in Rol.query.all()]
+                         
     contrasena = PasswordField(validators=[InputRequired(), Length(
         min=8, message='La contraseña debe tener al menos 8 caracteres')],
         render_kw={'placeholder':'Contraseña'})
@@ -88,6 +86,8 @@ class RegistrationForm(FlaskForm):
     consent = BooleanField('Consiento el uso de mis datos personales por parte de la institución educativa', validators=[DataRequired()])
     
     submit = SubmitField('Registrarse')
+
+    update = SubmitField('Actualizar')
 
 class LoginForm(FlaskForm):
     email = EmailField(validators=[InputRequired(), Email(
@@ -109,10 +109,14 @@ teachers = [
     {"name": "Teacher 4", "position": "Position 4"}
 ]
 
+usuarios = Usuario.query.order_by(Usuario.apellido)
+
+#Index
 @app.route('/')
 def home():
     return render_template('index.html', teachers=teachers)
 
+#Inicio de esión y Registro
 @app.route('/sign', methods=['GET', 'POST'])
 def sign():
     form_registro = RegistrationForm()
@@ -121,19 +125,34 @@ def sign():
     if form_registro.validate_on_submit():
         usuario_existe = Usuario.query.filter_by(
         email=form_registro.email.data).first()
+
         if usuario_existe:
             flash(
-                   'El correo ya está registrado'
+                   'El correo ya está registrado', 'error'
               )
         else:
             contrasena_hash = bcrypt.generate_password_hash(form_registro.contrasena.data)
-            nuevo_usuario = Usuario(nombre=form_registro.nombre.data, seg_nombre=form_registro.seg_nombre.data, 
-                    apellido=form_registro.apellido.data, seg_apellido=form_registro.seg_apellido.data, 
-                    email=form_registro.email.data, tel=form_registro.tel.data, 
-                    rol_id=form_registro.rol_id.data, contrasena=contrasena_hash)
+            # Capitaliza la primera letra de cada palabra en los campos de nombre y apellido
+            nombre = form_registro.nombre.data.title()
+            seg_nombre = form_registro.seg_nombre.data.title()
+            apellido = form_registro.apellido.data.title()
+            seg_apellido = form_registro.seg_apellido.data.title()
+
+            nuevo_usuario = Usuario(
+                nombre=nombre,
+                seg_nombre=seg_nombre,
+                apellido=apellido,
+                seg_apellido=seg_apellido,
+                email=form_registro.email.data,
+                tel=form_registro.tel.data,
+                rol_id=form_registro.rol_id.data,
+                contrasena=contrasena_hash
+            )
+
             
             db.session.add(nuevo_usuario)
             db.session.commit()
+            flash('Se registró de manera exitosa', 'success')
             return redirect (url_for('sign'))
 
     if form_login.validate_on_submit():
@@ -145,15 +164,17 @@ def sign():
 
     return render_template('sign_up.html', form_registro=form_registro, form_login=form_login)
     
+#Talleres
 @app.route('/especialidades')
 def talleres():
     return render_template('talleres.html')
 
+#Mapa Interactivo Institución
 @app.route('/instalaciones')
 def mapa():
     return render_template('mapa.html')
     
-
+#Perfil de Usuario
 @app.route('/dashboard')
 @login_required
 def dashboard():
@@ -164,6 +185,39 @@ def dashboard():
 def cerrar_sesion():
     logout_user()
     return redirect (url_for('sign'))
+
+#Ver o actualizar info de usuario
+@app.route('/user_info/<int:id>', methods=['GET', 'POST'])
+def user_info(id):
+    form=RegistrationForm()
+    nombre_actualizar = Usuario.query.get_or_404(id)
+    if request.method == "POST":
+        nombre_actualizar.nombre = request.form['nombre']
+        nombre_actualizar.seg_nombre = request.form['seg_nombre']
+        nombre_actualizar.apellido = request.form['apellido']
+        nombre_actualizar.seg_apellido = request.form['seg_apellido']
+        nombre_actualizar.email = request.form['email']
+        nombre_actualizar.tel = request.form['tel']
+        nombre_actualizar.rol_id = request.form['rol_id']
+        
+
+        try: 
+            db.session.commit()
+            flash('Se actualizó la información exitosamente', 'success')
+            return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+        except:
+            flash('No se pudo realizar la actualización', 'error')
+            return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+        
+    else:
+        return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+
+
+
+# Panel de Control Usuarios (Admin only)
+@app.route('/panel')
+def panel():
+    return render_template('panel.html', usuarios = usuarios)
 
 
 if __name__ == '__main__':

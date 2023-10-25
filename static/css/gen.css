@@ -181,3 +181,17 @@ a {
   justify-content: center; /* Horizontally center content */
   align-items: center; /* Vertically center content */
 }
+
+.error {
+  background-color: rgba(196, 89, 89, 0.445);
+  color: red;
+  margin:2vh 10vw 0;
+  display: block;
+}
+
+.success {
+  background-color: rgba(89, 196, 146, 0.445);
+  color: green;
+  margin: 2vh 10vw 0;
+  display: block;
+}

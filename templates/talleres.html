@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {%include ('part/head_gen.html')%}
+    {%include ('part/gen/head_gen.html')%}
 
     <!--Hoja de estilos-->
     <link
@@ -22,8 +22,8 @@
   <body>
     <!--Primeros elementos de la página-->
     <header>
-      {% include 'part/banner.html' %} {% include 'part/menu.html' %} {% include
-      ('part/footer.html')%}
+      {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %} 
     </header>
-  </body>
+    {% include('part/gen/footer.html')%}  
+</body>
 </html>
