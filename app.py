@@ -79,8 +79,10 @@ class RegistrationForm(FlaskForm):
 
     def __init__(self):
         super(RegistrationForm, self).__init__()
-        self.rol_id.choices = [(rol.id, rol.rol) for rol in Rol.query.all()]
-                         
+        roles = [(rol.id, rol.rol) for rol in Rol.query.filter(Rol.rol != 'admin').all()]
+        roles = sorted(roles, key=lambda x: x[0])
+        self.rol_id.choices = roles   
+
     contrasena = PasswordField(validators=[InputRequired(), Length(
         min=8, message='La contraseña debe tener al menos 8 caracteres')],
         render_kw={'placeholder':'Contraseña'})
