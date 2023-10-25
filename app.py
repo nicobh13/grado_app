@@ -78,11 +78,16 @@ class RegistrationForm(FlaskForm):
     
     rol_id = SelectField('Rol', coerce=int, validators=[InputRequired()])
 
-    def __init__(self):
+    def __init__(self, include_admin=False):
         super(RegistrationForm, self).__init__()
-        roles = [(rol.id, rol.rol) for rol in Rol.query.filter(Rol.rol != 'admin').all()]
+        roles = [(rol.id, rol.rol) for rol in Rol.query.all()]
+
+        if not include_admin:
+            # Filtrar la lista de roles para excluir "admin"
+            roles = [(id, rol) for id, rol in roles if rol != "admin"]
+
         roles = sorted(roles, key=lambda x: x[0])
-        self.rol_id.choices = roles   
+        self.rol_id.choices = roles
 
     contrasena = PasswordField(validators=[InputRequired(), Length(
         min=8, message='La contraseña debe tener al menos 8 caracteres')],
@@ -194,7 +199,7 @@ def cerrar_sesion():
 #Ver o actualizar info de usuario
 @app.route('/user_info/<int:id>', methods=['GET', 'POST'])
 def user_info(id):
-    form=RegistrationForm()
+    form=RegistrationForm(include_admin=True)
     nombre_actualizar = Usuario.query.get_or_404(id)
     if request.method == "POST":
         nombre_actualizar.nombre = request.form['nombre']
