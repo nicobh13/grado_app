@@ -9,6 +9,7 @@ from flask_migrate import Migrate
 from datetime import datetime
 
 
+
 app=Flask(__name__)
 app.secret_key = 'juli2201'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://nmora:nIcollemOra12@127.0.0.1:3306/tecnico'
@@ -81,13 +82,13 @@ class RegistrationForm(FlaskForm):
     def __init__(self, include_admin=False):
         super(RegistrationForm, self).__init__()
         roles = [(rol.id, rol.rol) for rol in Rol.query.all()]
-
+        
         if not include_admin:
-            # Filtrar la lista de roles para excluir "admin"
-            roles = [(id, rol) for id, rol in roles if rol != "admin"]
+            roles = [(id, rol) for id, rol in roles if rol.lower() != 'admin']
 
         roles = sorted(roles, key=lambda x: x[0])
         self.rol_id.choices = roles
+
 
     contrasena = PasswordField(validators=[InputRequired(), Length(
         min=8, message='La contraseña debe tener al menos 8 caracteres')],
@@ -129,48 +130,62 @@ def home():
 #Inicio de esión y Registro
 @app.route('/sign', methods=['GET', 'POST'])
 def sign():
-    form_registro = RegistrationForm()
-    form_login = LoginForm()
+    if current_user.is_authenticated:
+        flash('La sesión ya se encuentra iniciada', 'warning')
+        return redirect (url_for('dashboard'))
+    
+    else:
 
-    if form_registro.validate_on_submit():
-        usuario_existe = Usuario.query.filter_by(
-        email=form_registro.email.data).first()
+        form_registro = RegistrationForm()
+        form_login = LoginForm()
 
-        if usuario_existe:
-            flash(
-                   'El correo ya está registrado', 'error'
-              )
-        else:
-            contrasena_hash = bcrypt.generate_password_hash(form_registro.contrasena.data)
-            # Capitaliza la primera letra de cada palabra en los campos de nombre y apellido
-            nombre = form_registro.nombre.data.title()
-            seg_nombre = form_registro.seg_nombre.data.title()
-            apellido = form_registro.apellido.data.title()
-            seg_apellido = form_registro.seg_apellido.data.title()
+        if form_registro.validate_on_submit():
+            usuario_existe = Usuario.query.filter_by(
+            email=form_registro.email.data).first()
 
-            nuevo_usuario = Usuario(
-                nombre=nombre,
-                seg_nombre=seg_nombre,
-                apellido=apellido,
-                seg_apellido=seg_apellido,
-                email=form_registro.email.data,
-                tel=form_registro.tel.data,
-                rol_id=form_registro.rol_id.data,
-                contrasena=contrasena_hash
-            )
+            if usuario_existe:
+                flash(
+                    'El correo ya está registrado', 'error'
+                )
+            else:
+                contrasena_hash = bcrypt.generate_password_hash(form_registro.contrasena.data)
+                # Capitaliza la primera letra de cada palabra en los campos de nombre y apellido
+                nombre = form_registro.nombre.data.title()
+                seg_nombre = form_registro.seg_nombre.data.title()
+                apellido = form_registro.apellido.data.title()
+                seg_apellido = form_registro.seg_apellido.data.title()
 
+                nuevo_usuario = Usuario(
+                    nombre=nombre,
+                    seg_nombre=seg_nombre,
+                    apellido=apellido,
+                    seg_apellido=seg_apellido,
+                    email=form_registro.email.data,
+                    tel=form_registro.tel.data,
+                    rol_id=form_registro.rol_id.data,
+                    contrasena=contrasena_hash
+                )
+
+                
+                db.session.add(nuevo_usuario)
+                db.session.commit()
+                flash('Se registró de manera exitosa', 'success')
+                return redirect (url_for('sign'))
+
+        if form_login.validate_on_submit():
+            usuario=Usuario.query.filter_by(email=form_login.email.data).first()
+            if usuario:
+                if bcrypt.check_password_hash(usuario.contrasena, form_login.contrasena.data ):
+                    login_user(usuario)
+                    return redirect (url_for('dashboard'))
+                else:
+                    flash ('La contraseña es incorrecta, intente nuevamente', 'error')
+                    return render_template('sign_up.html', form_registro=form_registro, form_login=form_login, form_type='login')
+                
+            else:
+                flash('El usuario ingresado no existe', 'error')
+                return render_template('sign_up.html', form_registro=form_registro, form_login=form_login, form_type='register')
             
-            db.session.add(nuevo_usuario)
-            db.session.commit()
-            flash('Se registró de manera exitosa', 'success')
-            return redirect (url_for('sign'))
-
-    if form_login.validate_on_submit():
-        usuario=Usuario.query.filter_by(email=form_login.email.data).first()
-        if usuario:
-            if bcrypt.check_password_hash(usuario.contrasena, form_login.contrasena.data ):
-                login_user(usuario)
-                return redirect ('dashboard')
 
     return render_template('sign_up.html', form_registro=form_registro, form_login=form_login)
     
@@ -194,10 +209,26 @@ def dashboard():
 @login_required
 def cerrar_sesion():
     logout_user()
+    flash('Has cerrado sesión', 'success')
     return redirect (url_for('sign'))
+
+
+
+
+# Panel de Control Usuarios (Admin only)
+@app.route('/panel')
+@login_required
+def panel():
+    if current_user.rol.rol == 'Admin':
+        return render_template('panel.html', usuarios = usuarios)
+    
+    else:
+        flash('No tienes autorización para acceder a esta página', 'warning')
+        return redirect (url_for('dashboard'))
 
 #Ver o actualizar info de usuario
 @app.route('/user_info/<int:id>', methods=['GET', 'POST'])
+@login_required
 def user_info(id):
     form=RegistrationForm(include_admin=True)
     nombre_actualizar = Usuario.query.get_or_404(id)
@@ -214,20 +245,33 @@ def user_info(id):
         try: 
             db.session.commit()
             flash('Se actualizó la información exitosamente', 'success')
-            return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+            if current_user.rol.rol == 'Admin':
+                return redirect (url_for('panel'))
+            else:
+                return redirect (url_for('dashboard'))
         except:
             flash('No se pudo realizar la actualización', 'error')
-            return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+            return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar, id=id)
         
     else:
-        return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar)
+        return render_template ('usuario_info.html', form=form, nombre_actualizar = nombre_actualizar, id=id)
+    
+@app.route('/eliminar/<int:id>', methods=['GET', 'POST'])
+@login_required
+def eliminar(id):
+    usuario_eliminar = Usuario.query.get_or_404(id)
 
 
+    try: 
+        db.session.delete(usuario_eliminar)
+        db.session.commit()
+        flash('Se eliminó el usuario', 'warning')
+        return redirect(url_for('sign', form_type='register'))
+    except:
+        flash('No se pudo realizar la acción', 'error')
+        return redirect(url_for('user_info'))
 
-# Panel de Control Usuarios (Admin only)
-@app.route('/panel')
-def panel():
-    return render_template('panel.html', usuarios = usuarios)
+
 
 
 if __name__ == '__main__':

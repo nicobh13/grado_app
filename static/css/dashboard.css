@@ -1,0 +1,57 @@
+@charset "utf-8";
+/*CSS Documento*/
+
+.user-data{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    min-height: 85vh;
+    position: sticky;
+    background-color: #dadddc;
+    border-radius: 2%;
+    box-shadow: 2px 0 0 0 #c2c2c2;
+    margin: 0;
+}
+
+.profile-pic{
+    margin:0 auto;
+    background-color: black;
+    display: inline-block;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+}
+
+.profile-info{
+    font-size: 1.7vh;
+}
+
+.item, .profile-info{
+    padding: 2vh 1vw 0;
+}
+
+.profile-info, span{
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.logout{
+background-color: rgb(68, 24, 24);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+    color: #e9eceb;
+}
+
+.update {
+    background-color:#171b1a;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+    color: #e9eceb;
+}

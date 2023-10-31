@@ -24,6 +24,12 @@
     <header>
       {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
     </header>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+  <div class="{{ category }}">{{ message }}</div>
+  {% endfor %}
+  {% endwith %}
+
     <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
       Listado de Usuarios
     </p>

@@ -48,18 +48,24 @@
         {{ form.email(class="input_log text", value=nombre_actualizar.email)}}
         <div class="form-group">
             {{ form.tel(class="input_reg text", value=nombre_actualizar.tel) }}
-            <select name="rol_id" class="input_reg select text">
-                {% for choice, label in form.rol_id.choices %}
-                <option value="{{ choice }}" {% if choice==nombre_actualizar.rol_id %}selected{% endif %}>
-                    {{ label }}
-                </option>
-                {% endfor %}
-            </select>
+{% if current_user.rol.rol == 'Admin' %}
+    <select name="rol_id" class="input_reg select text">
+        {% for choice, label in form.rol_id.choices %}
+        <option value="{{ choice }}" {% if choice == nombre_actualizar.rol_id %}selected{% endif %}>
+            {{ label }}
+        </option>
+        {% endfor %}
+    </select>
+{% else %}
+    {{ form.rol_id(class="input_reg select text") }}
+{% endif %}
         </div>
-        </div>
-
-
+        <div class="form-group">
         {{ form.update(class="update-button text")}}
+
+        <a href="{{url_for ('eliminar', id=id)}}" class="delete-button">Eliminar</a>
+        </div>
+
     </form>
     {%include ('part/gen/footer.html')%}
 </body>

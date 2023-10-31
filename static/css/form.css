@@ -97,6 +97,19 @@
   color:#e9eceb;
 }
 
+.delete-button {
+  display: block;
+  background-color: red;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 2.2vh;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  color: #e9eceb;
+}
+
 .select {
   cursor: pointer;
 }

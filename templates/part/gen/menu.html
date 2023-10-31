@@ -12,7 +12,11 @@
                         <li><a href="{{ url_for('home')}}">Inicio</a></li>
                         <li><a href="{{ url_for('talleres')}}">Especialidades</a></li>
                         <li><a href="{{ url_for('mapa')}}">Instalaciones</a></li>
+                        {% if current_user.rol.rol == 'Admin' %}
+                        <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
+                        {% endif %}
                     </ul>
+
                     {%include ('part/gen/sign_redir.html')%}
             </div>
         </div>
