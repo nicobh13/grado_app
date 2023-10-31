@@ -1,0 +1,65 @@
+from modelos import Rol
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, EmailField, TelField, SelectField, BooleanField
+from wtforms.validators import InputRequired, Length, Optional, ValidationError, Email, DataRequired
+
+class RegistrationForm(FlaskForm):
+    nombre = StringField(validators=[InputRequired(), Length(
+        min=3, max=10, message='Debe tener un mínimo de 3 caracteres')]
+        , render_kw={'placeholder':'Primer Nombre'})
+     
+    seg_nombre = StringField(validators=[Optional(), Length(
+        min=3, max=10, message='Debe tener un mínimo de 3 caracteres')]
+        , render_kw={'placeholder':'Segundo Nombre'})
+     
+    apellido = StringField(validators=[InputRequired(), Length(
+        min=4, max=10, message='Debe tener un mínimo de 4 caracteres')]
+        , render_kw={'placeholder':'Primer Apellido'})
+     
+    seg_apellido = StringField(validators=[Optional(), Length(
+        min=4, max=10, message='Debe tener un mínimo de 4 caracteres')]
+        , render_kw={'placeholder':'Segundo Apellido'})
+    
+    email = EmailField(validators=[InputRequired(), Email(
+        message='Debe ingresar un correo válido')], 
+        render_kw={'placeholder':'Correo electrónico'})
+    
+    tel = TelField(validators=[InputRequired(), Length(10, 
+        message='Debe ingresar un número de teléfono válido')],
+        render_kw={'placeholder':'Teléfono'})
+    
+    rol_id = SelectField('Rol', coerce=int, validators=[InputRequired()])
+
+    def __init__(self, include_admin=False):
+        super(RegistrationForm, self).__init__()
+        roles = [(rol.id, rol.rol) for rol in Rol.query.all()]
+        
+        if not include_admin:
+            roles = [(id, rol) for id, rol in roles if rol.lower() != 'admin']
+
+        roles = sorted(roles, key=lambda x: x[0])
+        self.rol_id.choices = roles
+
+
+    contrasena = PasswordField(validators=[InputRequired(), Length(
+        min=8, message='La contraseña debe tener al menos 8 caracteres')],
+        render_kw={'placeholder':'Contraseña'})
+    
+    consent = BooleanField('Consiento el uso de mis datos personales por parte de la institución educativa', validators=[DataRequired()])
+    
+    submit = SubmitField('Registrarse')
+
+    update = SubmitField('Actualizar')
+
+class LoginForm(FlaskForm):
+    email = EmailField(validators=[InputRequired(), Email(
+        message='Debe ingresar un correo válido')], 
+        render_kw={'placeholder':'Correo electrónico'})
+
+    contrasena = PasswordField(validators=[InputRequired(), Length(
+        min=8, message='La contraseña debe tener al menos 8 caracteres')],
+        render_kw={'placeholder':'Contraseña'})
+    
+    mantener_sesion = BooleanField('Mantener sesión iniciada')
+
+    submit = SubmitField('Iniciar Sesión')
