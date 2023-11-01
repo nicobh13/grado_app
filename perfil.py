@@ -1,6 +1,6 @@
 from flask import flash, redirect, render_template, url_for
 from config import app
-from log import login_required, logout_user
+from log import login_required, logout_user, login_manager
 
 #Perfil de Usuario
 @app.route('/dashboard')
@@ -12,5 +12,5 @@ def dashboard():
 @login_required
 def cerrar_sesion():
     logout_user()
-    flash('Has cerrado sesión', 'success')
+    flash('Has cerrado sesión', 'warning')
     return redirect (url_for('sign'))
