@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from config import app, db
 from modelos import usuarios, Usuario
-from log import current_user, login_required
+from log import current_user, login_required, logout_user
 from forms import RegistrationForm
 
 @app.route('/panel')
@@ -51,9 +51,11 @@ def eliminar(id):
 
 
     try: 
-        db.session.delete(usuario_eliminar)
+        usuario_eliminar.estado = 'inactivo'
         db.session.commit()
         flash('Se eliminó el usuario', 'warning')
+        if usuario_eliminar==current_user:
+            logout_user()
         return redirect(url_for('sign', form_type='register'))
     except:
         flash('No se pudo realizar la acción', 'error')

@@ -1,13 +1,17 @@
 from flask import flash, redirect, render_template, url_for
 from config import app
-from log import login_required, logout_user, login_manager
+from log import login_required, logout_user, login_manager, current_user
+
 
 #Perfil de Usuario
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
-
+    if current_user.is_authenticated:
+        return render_template ('dashboard.html')
+    else:
+        return redirect (url_for('sign'))
+    
 @app.route('/cerrar_sesion')
 @login_required
 def cerrar_sesion():

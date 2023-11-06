@@ -56,7 +56,7 @@ class Posts(db.Model):
     autor = db.relationship('Usuario', foreign_keys=[autor_id])
     destino = db.relationship('Grupos', foreign_keys=[destino_id])
 
-usuarios = Usuario.query.order_by(Usuario.apellido)
+usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
 teachers = [
     {"name": "Teacher 1", "position": "Position 1"},

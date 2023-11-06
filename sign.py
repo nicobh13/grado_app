@@ -21,7 +21,13 @@ def sign():
             email=form_registro.email.data).first()
 
             if usuario_existe:
-                flash(
+                if usuario_existe.estado == 'inactivo':
+                    login_user(usuario_existe)
+                    usuario_existe.estado = 'activo'
+                    db.session.commit()
+                    return redirect (url_for('dashboard'))
+                else:
+                    flash(
                     'El correo ya está registrado', 'error'
                 )
             else:
@@ -47,20 +53,24 @@ def sign():
                 db.session.add(nuevo_usuario)
                 db.session.commit()
                 flash('Se registró de manera exitosa', 'success')
-                return redirect (url_for('sign'))
+                login_user(nuevo_usuario)
+                return redirect (url_for('dashboard'))
 
         if form_login.validate_on_submit():
             usuario=Usuario.query.filter_by(email=form_login.email.data).first()
-            if usuario:
-                if bcrypt.check_password_hash(usuario.contrasena, form_login.contrasena.data ):
-                    login_user(usuario)
-                    return redirect (url_for('dashboard'))
+            if usuario :
+                if usuario.estado =='inactivo':
+                    flash('No se encontró el usuario', 'error')
                 else:
-                    flash ('La contraseña es incorrecta, intente nuevamente', 'error')
-                    return render_template('sign_up.html', form_registro=form_registro, form_login=form_login, form_type='login')
+                    if bcrypt.check_password_hash(usuario.contrasena, form_login.contrasena.data ):
+                        login_user(usuario)
+                        return redirect (url_for('dashboard'))
+                    else:
+                        flash ('La contraseña es incorrecta, intente nuevamente', 'error')
+                        return render_template('sign_up.html', form_registro=form_registro, form_login=form_login, form_type='login')
                 
             else:
-                flash('El usuario ingresado no existe', 'error')
+                flash('No se encontró el usuario', 'error')
                 return render_template('sign_up.html', form_registro=form_registro, form_login=form_login, form_type='register')
             
 
