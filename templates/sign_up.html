@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  {%include ('part/gen/head_gen.html')%}
+  {%include 'components/head_gen.html'%}
 
   <!--Hoja de estilos-->
   <link rel="stylesheet" href="{{ url_for('static', filename = 'css/form.css')}}" type="text/css" />
@@ -19,7 +19,7 @@
 <body>
   <!--Primeros elementos de la página-->
   <header>
-    {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+    {% include 'components/banner.html' %} {% include 'components/menu.html' %}
 
     </div>
     </div>
@@ -35,12 +35,12 @@
       <button id="change-button" class="change-button text"></button>
     </div>
     <div class="input-section texto text">
-      <div id="login-form">{% include 'part/sign_up/login.html' %}</div>
+      <div id="login-form">{% include 'components/login.html' %}</div>
       <div id="registration-form" style="display: none">
-        {% include 'part/sign_up/registro.html' %}</div>
+        {% include 'components/registro.html' %}</div>
     </div>
   </div>
-  {%include ('part/gen/footer.html')%}
+  {%include 'components/footer.html'%}
 </body>
 
 </html>

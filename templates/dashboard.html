@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    {%include ('part/gen/head_gen.html')%}
+    {%include 'components/head_gen.html'%}
 
     <!--Hoja de estilos-->
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
@@ -19,7 +19,7 @@
 <body>
     <!--Primeros elementos de la página-->
     <header>
-        {% include 'part/gen/banner.html' %} {% include 'part/gen/menu.html' %}
+        {% include 'components/banner.html' %} {% include 'components/menu.html' %}
     </header>
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% for category, message in messages %}
@@ -61,7 +61,7 @@
 
     </div>
 
-    {%include ('part/gen/footer.html')%}
+    {%include 'components/footer.html'%}
 </body>
 
 </html>
