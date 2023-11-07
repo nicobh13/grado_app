@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from config import app, db
-from modelos import usuarios, Usuario
+from modelos import usuarios, Usuario, Grupos
 from log import current_user, login_required, logout_user
 from forms import RegistrationForm
 
@@ -30,6 +30,16 @@ def user_info(id):
             nombre_actualizar.email = request.form['email']
             nombre_actualizar.tel = request.form['tel']
             nombre_actualizar.rol_id = request.form['rol_id']
+
+            if nombre_actualizar.rol.rol in ['Docente', 'Directivo']:
+
+                if nombre_actualizar.rol.rol == 'Docente':
+                    grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDocente').first()
+                else:
+                    grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDirectivo').first()
+
+                if grupo:
+                    nombre_actualizar.grupo_id = grupo.id
             
 
             try: 

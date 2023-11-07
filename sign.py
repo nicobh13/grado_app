@@ -1,6 +1,6 @@
 from flask import redirect, flash, url_for, render_template
 from config import app,  db, bcrypt
-from modelos import Usuario
+from modelos import Usuario, Grupos
 from log import current_user, login_user
 from forms import LoginForm, RegistrationForm
 
@@ -50,6 +50,16 @@ def sign():
                 )
 
                 
+                if nuevo_usuario.rol.rol in ['Docente', 'Directivo']:
+
+                    if nuevo_usuario.rol.rol == 'Docente':
+                        grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDocente').first()
+                    else:
+                        grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDirectivo').first()
+
+                    if grupo:
+                        nuevo_usuario.grupo_id = grupo.id
+
                 db.session.add(nuevo_usuario)
                 db.session.commit()
                 flash('Se registró de manera exitosa', 'success')
