@@ -13,8 +13,3 @@ def home():
 @app.route('/especialidades')
 def talleres():
     return render_template('talleres.html')
-
-#Mapa Interactivo Institución
-@app.route('/instalaciones')
-def mapa():
-    return render_template('mapa.html')
