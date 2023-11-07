@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%include 'components/head_gen.html'%}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
+    <link rel="shortcut icon" href="images/shortcut.png" />
+    <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
+    <title>Diseño Industrial</title>
+</head>
+<body>
+    <header>
+        {% include 'components/banner.html' %}
+        {% include 'components/menu.html' %}
+    </header>
+<div>
+    <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+        Diseño Industrial </p>
+    <div class="hor-line"></div>
+    <p style="max-width: 85vw; width: 65vw; min-height: 60vh; font-size: 2vh; margin: 0 17.5vw 2vh;" class="text">El
+        Taller de Diseño Industrial es un espacio de formación fundamental para estudiantes interesados en la creación y
+        planificación de proyectos de diseño mecánico, topográfico, arquitectónico y obras civiles. Este taller
+        proporciona a los alumnos la oportunidad de explorar un amplio espectro de habilidades y conocimientos que son
+        esenciales en el mundo del diseño y la construcción.</br></br>
+
+        En el Taller de Diseño Industrial, los estudiantes se sumergen en un entorno de aprendizaje que promueve la
+        creatividad, la resolución de problemas y la planificación estratégica. A través de actividades prácticas,
+        proyectos y la enseñanza de conceptos teóricos, los participantes adquieren habilidades valiosas que los
+        preparan para abordar desafíos en los campos del diseño mecánico, topografía, arquitectura y construcción de
+        obras civiles.</br></br>
+
+        Exploraremos más de cerca los programas de media técnica que se ofrecen en el Taller de Diseño Industrial:</br></br>
+
+        <i>Diseño Mecánico Asistido por Computador:</i> Este programa se enfoca en el diseño y desarrollo de componentes
+        mecánicos utilizando herramientas de software de vanguardia.</br></br>
+
+        <i>Diseño Topográfico:</i> En este programa, los estudiantes adquieren habilidades en levantamientos
+        topográficos y cartografía, fundamentales en la planificación de proyectos de construcción y desarrollo de
+        terrenos.</br></br>
+
+        <i>Diseño Arquitectónico y Obras Civiles:</i> Este programa se centra en la creación de proyectos
+        arquitectónicos y de ingeniería civil, incluyendo edificios, puentes, y otras infraestructuras.</br></br>
+
+        Cada uno de estos programas de media técnica proporciona a los estudiantes una base sólida en su campo de
+        elección, preparándolos para futuras oportunidades académicas y profesionales. Si deseas conocer más sobre estos
+        programas, ¡estás en el lugar correcto!
+    </p>    <!-- Aquí insertamos el contenido del primer archivo HTML usando un iframe -->
+    {%include 'components/footer.html'%}
+</body>
+</html>
+

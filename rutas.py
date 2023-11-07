@@ -10,6 +10,18 @@ def home():
 #Inicio de esión y Registro
     
 #Talleres
-@app.route('/especialidades')
-def talleres():
-    return render_template('talleres.html')
+@app.route('/especialidades/informatica')
+def informatica():
+    return render_template('informatica.html')
+
+@app.route('/especialidades/electricidad')
+def electricidad():
+    return render_template('electricidad.html')
+
+@app.route('/especialidades/mecanica')
+def mecanica():
+    return render_template('mecanica.html')
+
+@app.route('/especialidades/dibujo_industrial')
+def dibujo():
+    return render_template('dibujo.html')

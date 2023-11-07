@@ -10,7 +10,11 @@
                 <!--Lista de items-->
                     <ul class="menu-hidden text">
                         <li><a href="{{ url_for('home')}}">Inicio</a></li>
-                        <li><a href="{{ url_for('talleres')}}">Especialidades</a></li>
+                        <li><a href="{{ url_for('informatica')}}">Informática</a></li>
+                        <li><a href="{{ url_for('electricidad')}}">Electricidad</a></li>
+                        <li><a href="{{ url_for('dibujo')}}">Diseño Industrial</a></li>
+                        <li><a href="{{ url_for('mecanica')}}">Mecánica</a></li>
+
                         {% if current_user.is_authenticated and current_user.rol.rol == 'Admin' %}
                         <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
                         {% endif %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%include 'components/head_gen.html'%}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
+    <link rel="shortcut icon" href="images/shortcut.png" />
+    <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
+    <title>Informática</title>
+</head>
+<body>
+    <header>
+        {% include 'components/banner.html' %}
+        {% include 'components/menu.html' %}
+    </header>
+<div>
+    <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+        Informática
+    </p>
+    <div class="hor-line"></div>
+
+    <p style="max-width: 85vw;
+    width: 65vw;
+    min-height: 60vh;
+    font-size: 2vh;
+    margin: 0 17.5vw 2vh;" class="text">El Taller de Informática, dentro del ámbito educativo, se destaca como un espacio
+        fundamental para la formación de los estudiantes en habilidades tecnológicas y computacionales. Este taller
+        proporciona a los alumnos la oportunidad de explorar el vasto mundo de la tecnología de la información, la
+        programación, el diseño gráfico y la electrónica, entre otros campos relacionados.
+</br></br>
+        En el Taller de Informática, los estudiantes se sumergen en un entorno de aprendizaje que fomenta la
+        creatividad, la resolución de problemas y el pensamiento lógico. A través de actividades prácticas, proyectos y
+        la enseñanza de conceptos teóricos, los participantes adquieren conocimientos valiosos que los preparan para
+        desafíos presentes y futuros en la era digital.
+    </br></br>
+        Veamos más de cerca cada uno de los programas de media técnica que se ofrecen en el Taller de
+        Informática:
+    </br></br>
+        <i>Diseño y Desarrollo de Sitios Web:</i> Este programa se centra en el diseño y desarrollo de sitios web. Los
+        estudiantes aprenderán a crear experiencias en línea atractivas y funcionales.
+    </br></br>
+        <i>Diseño Gráfico por Computadora:</i> En este programa, los estudiantes adquieren habilidades en diseño gráfico,
+        utilizando herramientas de software para crear imágenes y elementos visuales impactantes.
+    </br></br>
+        <i>Mantenimiento Electrónico y de Computadoras:</i> Este programa se enfoca en la reparación y el mantenimiento de
+        equipos electrónicos y computadoras, preparando a los estudiantes para resolver problemas técnicos.
+    </br></br>
+        Cada uno de estos programas de media técnica proporciona a los estudiantes una base sólida en un campo
+        específico, preparándolos para futuras oportunidades académicas y profesionales.</p></div>    <!-- Aquí insertamos el contenido del primer archivo HTML usando un iframe -->
+    {%include 'components/footer.html'%}
+</body>
+</html>
+

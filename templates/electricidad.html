@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%include 'components/head_gen.html'%}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
+    <link rel="shortcut icon" href="images/shortcut.png" />
+    <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
+    <title>Electricidad y Electrónica</title>
+</head>
+
+<body>
+    <header>
+        {% include 'components/banner.html' %}
+        {% include 'components/menu.html' %}
+    </header>
+    <div>
+        <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+            Informática
+        </p>
+        <div class="hor-line"></div>
+
+        <p style="max-width: 85vw;
+    width: 65vw;
+    min-height: 60vh;
+    font-size: 2vh;
+    margin: 0 17.5vw 2vh;" class="text">El Taller de Electricidad es un espacio donde los estudiantes tienen la
+            oportunidad de adentrarse en el fascinante mundo de la electricidad y la electrónica. Este taller les brinda
+            la formación necesaria para comprender, controlar y mantener sistemas eléctricos y electrónicos en diversas
+            aplicaciones.<br><br>
+
+            En el Taller de Electricidad, los participantes desarrollan habilidades clave para el análisis de circuitos,
+            la resolución de problemas técnicos y la implementación de soluciones en sistemas eléctricos y electrónicos.
+            Este espacio de aprendizaje les permite explorar los siguientes programas de media técnica:<br><br>
+
+            <i>Electrónica y Control:</i> En este programa, los estudiantes se enfocan en la electrónica y el control de
+            sistemas. Aprenden a diseñar circuitos electrónicos, utilizar microcontroladores y desarrollar sistemas de
+            automatización.<br><br>
+
+            <i>Autotrónica:</i> El programa de Autotrónica se centra en la electrónica aplicada a la industria automotriz. Los
+            estudiantes adquieren habilidades para diagnosticar y reparar sistemas electrónicos en vehículos.<br><br>
+
+            <i>Mecatrónica:</i> La mecatrónica es un campo multidisciplinario que combina la electrónica, la mecánica y la
+            informática. En este programa, los estudiantes aprenden a diseñar sistemas mecatrónicos y robots.<br><br>
+
+            <i>Redes Eléctricas y Comunicaciones:</i> Este programa se enfoca en las redes eléctricas y las comunicaciones. Los
+            estudiantes adquieren conocimientos sobre la generación, transmisión y distribución de energía eléctrica,
+            así como la configuración de redes de comunicación.<br><br>
+
+            Cada uno de estos programas de media técnica ofrece a los estudiantes una sólida base en electricidad y
+            electrónica, preparándolos para desafíos emocionantes en el campo de la tecnología y la ingeniería.</p>
+    </div> <!-- Aquí insertamos el contenido del primer archivo HTML usando un iframe -->
+    {%include 'components/footer.html'%}
+</body>
+
+</html>

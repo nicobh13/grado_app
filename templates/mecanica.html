@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {%include 'components/head_gen.html'%}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
+    <link rel="shortcut icon" href="images/shortcut.png" />
+    <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
+    <title>Mecánica Industrial</title>
+</head>
+<body>
+    <header>
+        {% include 'components/banner.html' %}
+        {% include 'components/menu.html' %}
+    </header>
+    <div>
+        <p class="title-font" style="margin: 0 auto; padding: 5vh 0 2vh">
+            Mecánica Industrial
+        </p>
+        <div class="hor-line"></div>
+    
+        <p style="max-width: 85vw;
+        width: 65vw;
+        min-height: 60vh;
+        font-size: 2vh;
+        margin: 0 17.5vw 2vh;" class="text">El Taller de Mecánica Industrial es un espacio fundamental en la formación de estudiantes para desarrollar habilidades técnicas en el campo de la mecánica y la soldadura. Este taller ofrece a los alumnos la oportunidad de explorar el mundo de la ingeniería mecánica y la fabricación industrial, brindándoles las competencias necesarias para afrontar desafíos en el sector industrial.
+    
+        </br></br>
+            En el Taller de Mecánica Industrial, los estudiantes se involucran en un entorno de aprendizaje que fomenta la precisión, la destreza manual y la resolución de problemas técnicos. A través de prácticas, proyectos y conocimientos teóricos, los participantes adquieren habilidades valiosas que los preparan para el mundo industrial y sus demandas.
+    
+        </br></br>
+            Vamos a conocer más de cerca los programas de media técnica que se ofrecen en el Taller de Mecánica Industrial:
+        </br></br>
+            <i>Mecánica:</i> Este programa se enfoca en los principios y aplicaciones de la ingeniería mecánica, preparando a los estudiantes para trabajar en diseño, fabricación y mantenimiento de maquinaria y sistemas mecánicos.
+    
+        </br></br>
+            <i>Soldadura:</i> En este programa, los estudiantes desarrollan habilidades de soldadura, aprendiendo las técnicas y procedimientos necesarios para unir y reparar estructuras metálicas.
+    
+        </br></br>
+            Cada uno de estos programas proporciona a los estudiantes una base sólida en campos específicos, preparándolos para oportunidades futuras en el ámbito industrial y la ingeniería mecánica.
+        </p>
+    </div>
+        {%include 'components/footer.html'%}
+</body>
+</html>
+
