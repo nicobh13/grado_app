@@ -49,7 +49,7 @@ class Posts(db.Model):
     fecha_publicado = db.Column(db.DateTime, default = datetime.utcnow)
     fecha_editado = db.Column(db.DateTime, onupdate=datetime.utcnow)
     destino_id = db.Column(db.Integer, db.ForeignKey('grupos.id'), nullable=True)
-    visibilidad = db.Column(db.String(30), default = "visible")
+    visibilidad = db.Column(db.String(30), default = "1")
 
     
     # Relación con la tabla "usuarios" para acceder al autor

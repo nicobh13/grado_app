@@ -26,7 +26,7 @@ def crear_anuncio():
             )                
             db.session.add(nuevo_anuncio)
             db.session.commit()
-            flash('Se agregó el anuncio', 'success')
+            flash('Se agregó el anuncio, es posible que los cambios tarden un poco en mostrarse', 'success')
 
 
             return redirect(url_for('dashboard'))
@@ -51,17 +51,18 @@ def editar_anuncio(id):
                 anuncio_actualizar.titulo = request.form['titulo']
                 anuncio_actualizar.texto = request.form['texto']
                 anuncio_actualizar.destino_id = request.form['destinatario']
-                anuncio_actualizar.visibilidad = request.form['visibilidad']
 
-                db.session.commit()
-                flash('Se editó el anuncio', 'success')
+                try: 
+                    db.session.commit()
+                    flash('Se editó el anuncio, es posible que los cambios tarden un poco en mostrarse', 'success')
+                    return redirect (url_for('dashboard'))
+                except:
+                    flash('No se pudo realizar la actualización', 'error')
+                    return render_template ('editar_anuncio.html', form=form, anuncio_actualizar=anuncio_actualizar)
 
-
-                return redirect(url_for('dashboard'))
-            
-            else:
-                 flash('No puedes editar anuncios que no hayas creado', 'warning')
-                 return redirect (url_for('dashboard'))
+        else:
+            flash('No puedes editar anuncios que no hayas creado', 'warning')
+            return redirect (url_for('dashboard'))
         
         return render_template ('editar_anuncio.html', form=form, anuncio_actualizar=anuncio_actualizar)
 

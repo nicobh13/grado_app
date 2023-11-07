@@ -81,3 +81,5 @@ class AnuncioForm(FlaskForm):
 
     submit = SubmitField('Publicar Anuncio')
 
+    update = SubmitField('Actualizar Anuncio')
+

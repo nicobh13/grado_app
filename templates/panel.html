@@ -34,7 +34,6 @@
       Listado de Usuarios
     </p>
     <div class="hor-line"></div>
-    {% set counter = 0 %}
     <div class="user-list text">
       {% for usuario in usuarios %}
       <a href="{{url_for('user_info', id=usuario.id)}}">

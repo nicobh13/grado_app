@@ -165,6 +165,7 @@ h2.taller {
     overflow: hidden;
     width:100%;
     background-color: #cacaca;
+    min-height: 20vh;
 }
 
 .slider-photos {
@@ -182,9 +183,9 @@ h2.taller {
 }
 
 .teacher-image {
-    width: 120px;
+    width: 8vw;
     /* Adjust image size */
-    height: 120px;
+    height: 15vh;
     margin: 0 auto;
     background-color: #fff;
     object-fit: cover;

@@ -20,7 +20,7 @@
     </header>
     <div class="container">
         <div class="announcement-form">
-            <h2 class="title-font">Crear Anuncio</h2>
+            <h2 class="title-font">Editar Anuncio</h2>
             <form method="POST">
                 {{ form.hidden_tag() }}
                 <div class="form-group">
@@ -28,7 +28,8 @@
                     {{form.destinatario.label(class="text")}}
                     {{ form.destinatario(class="form-control text", value = anuncio_actualizar.destinatario) }}
                 </div>
-                    {{ form.texto(class="form-anuncio text" anuncio_actualizar.texto) }}
+                {{ form.texto(class="form-anuncio text", value=anuncio_actualizar.texto) }}
+             
                     {{ form.submit(class="submit-button text")}}
                 </div>
             </form>
