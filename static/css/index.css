@@ -171,6 +171,8 @@ h2.taller {
 .slider-photos {
     display: flex;
     transition: transform 0.3s ease;
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center;
     /* Enable smooth sliding transition */
 }
 

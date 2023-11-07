@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     {%include 'components/head_gen.html'%}
-
-    <!--Hoja de estilos-->
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/dashboard.css')}}" type="text/css" />
-
-    <!--Ícono shortcut-->
     <link rel="shortcut icon" href="images/shortcut.png" />
-
-    <!--Javascript para el sitio-->
     <script src="{{ url_for('static', filename = 'js/dashboard.js')}}"></script>
-
-    <title>Perfil</title>
+    <title>Instalaciones</title>
 </head>
-
 <body>
-    <!--Primeros elementos de la página-->
     <header>
-        {% include 'components/banner.html' %} {% include 'components/menu.html' %}
+        {% include 'components/banner.html' %}
+        {% include 'components/menu.html' %}
     </header>
+    <!-- Aquí insertamos el contenido del primer archivo HTML usando un iframe -->
+    <iframe src="{{url_for('components', filename='mapa.html')}}" frameborder="0" width="100%" height="600"></iframe>
     {%include 'components/footer.html'%}
 </body>
-
 </html>

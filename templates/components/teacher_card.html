@@ -1,12 +1,18 @@
-<!-- Teacher Cards -->
-{% for teacher in teachers %}
-<div class="teacher-card">
-    <div class="teacher-image">
-        <!-- Teacher Image Here -->
+{% if teachers %}
+    <!-- Teacher Cards -->
+    {% for teacher in teachers %}
+    <div class="teacher-card">
+        <div class="teacher-image">
+            <!-- Teacher Image Here -->
+        </div>
+        <div class="teacher-info">
+            <div class="teacher-name">{{ teacher.nombre }} {{ teacher.seg-nombre }} {{ teacher.apellido }} {{ teacher.seg-apellido }}</div>
+            <div class="teacher-position">{{ teacher.rol.rol }}</div>
+        </div>
     </div>
-    <div class="teacher-info">
-        <div class="teacher-name">{{ teacher.name }}</div>
-        <div class="teacher-position">{{ teacher.position }}</div>
-    </div>
-</div>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <p class="text" style="margin: 8vh 0 0;
+    font-size: 2vh;
+    ">No se encontraron registros de directivos</p>
+{% endif %}

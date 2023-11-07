@@ -35,7 +35,7 @@ class Usuario(db.Model, UserMixin):
 
     # Relación con la tabla "roles"
     grupo = db.relationship('Grupos', foreign_keys = [grupo_id])
-    rol = db.relationship('Rol')
+    rol = db.relationship('Rol', backref='usuarios')
 
     
 
@@ -60,9 +60,4 @@ usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
 anuncios = Posts.query.order_by(Posts.fecha_editado).all()
 
-teachers = [
-    {"name": "Teacher 1", "position": "Position 1"},
-    {"name": "Teacher 2", "position": "Position 2"},
-    {"name": "Teacher 3", "position": "Position 3"},
-    {"name": "Teacher 4", "position": "Position 4"}
-]
+teachers = Usuario.query.filter((Usuario.rol_id == 3) | (Usuario.rol_id == 4)).all()
