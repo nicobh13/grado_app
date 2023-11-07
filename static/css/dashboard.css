@@ -19,11 +19,11 @@
 
 .profile-pic{
     margin:0 auto;
-    background-color: black;
     display: inline-block;
     border-radius: 100%;
     width: 100px;
     height: 100px;
+    object-fit: cover;
 }
 
 .profile-info{
@@ -76,5 +76,50 @@ background-color: rgb(68, 24, 24);
 }
 
 p.text{
-    font-size: 2vh;
+    font-size: 1.8vh;
+}
+
+div.text{
+    font-size: 1.6vh;
+}
+
+.anuncio {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 2vh 3vw;
+}
+
+.anuncio-header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 0;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.perfil-foto {
+    width: 30px;
+    height: 30px;
+    background-color: #000; /* Fondo negro o imagen de perfil */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nombre-anunciante {
+    align-self: center;
+}
+
+.rol-fecha {
+    font-size: 0.8em;
+    color: #777;
+    margin: 0;
+    padding: 5px 2.5vw;
+}
+
+.contenido-anuncio {
+    margin-top: 10px;
+    padding: 1vh 3vw 2vh;
+}
+
+.editar-anuncio{
+    padding: 1vh 2vw 2vh;
 }

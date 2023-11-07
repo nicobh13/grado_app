@@ -58,6 +58,8 @@ class Posts(db.Model):
 
 usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
+anuncios = Posts.query.order_by(Posts.fecha_editado).all()
+
 teachers = [
     {"name": "Teacher 1", "position": "Position 1"},
     {"name": "Teacher 2", "position": "Position 2"},

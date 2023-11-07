@@ -1,6 +1,7 @@
 from flask import flash, redirect, render_template, url_for
 from config import app
 from log import login_required, logout_user, login_manager, current_user
+from modelos import anuncios
 
 
 #Perfil de Usuario
@@ -9,7 +10,7 @@ from log import login_required, logout_user, login_manager, current_user
 def dashboard():
     if current_user.is_authenticated:
         id = current_user.id
-        return render_template ('dashboard.html', id=id)
+        return render_template ('dashboard.html', id=id, anuncios=anuncios)
     else:
         return redirect (url_for('sign'))
     
