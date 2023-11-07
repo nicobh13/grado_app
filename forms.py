@@ -1,7 +1,7 @@
-from modelos import Rol
+from modelos import Rol, Grupos
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField, TelField, SelectField, BooleanField
-from wtforms.validators import InputRequired, Length, Optional, ValidationError, Email, DataRequired
+from wtforms import StringField, PasswordField, SubmitField, EmailField, TelField, SelectField, BooleanField, TextAreaField
+from wtforms.validators import InputRequired, Length, Optional, Email, DataRequired
 
 class RegistrationForm(FlaskForm):
     nombre = StringField(validators=[InputRequired(), Length(
@@ -63,3 +63,21 @@ class LoginForm(FlaskForm):
     mantener_sesion = BooleanField('Mantener sesión iniciada')
 
     submit = SubmitField('Iniciar Sesión')
+
+class AnuncioForm(FlaskForm):
+    titulo = StringField(validators=[DataRequired(), Length(min=4, max=30)], render_kw={'placeholder':'Título'})
+    texto = TextAreaField(validators=[DataRequired()], render_kw={'placeholder':'Redacte su anuncio'})
+
+    grupos = Grupos.query.order_by(Grupos.id).all()
+
+    choices = [(str(grupo.id), grupo.grupo) for grupo in grupos]
+    
+    
+    # Crea el campo SelectField con las opciones
+    default_group_id = next((str(grupo.id) for grupo in grupos if grupo.id == 1), None)
+    
+    # Crea el campo SelectField con las opciones y el valor predeterminado
+    destinatario = SelectField('Visible para:', choices=choices, coerce=int, default=default_group_id)
+
+    submit = SubmitField('Publicar Anuncio')
+

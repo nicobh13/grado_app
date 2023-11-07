@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%include 'components/head_gen.html'%}
+
+    <!--Hoja de estilos-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/anuncios.css')}}" type="text/css" />
+
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <title>Perfil</title>
+</head>
+
+<body>
+    <!--Primeros elementos de la página-->
+    <header>
+        {% include 'components/banner.html' %} {% include 'components/menu.html' %}
+    </header>
+    <div class="container">
+        <div class="announcement-form">
+            <h2 class="title-font">Crear Anuncio</h2>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.titulo(class="form-control text") }}
+                    {{form.destinatario.label(class="text")}}
+                    {{ form.destinatario(class="form-control text") }}
+                </div>
+                    {{ form.texto(class="form-anuncio text") }}
+                    {{ form.submit(class="submit-button text")}}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {%include 'components/footer.html'%}
+</body>
+
+</html>

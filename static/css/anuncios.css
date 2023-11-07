@@ -1,0 +1,60 @@
+.container {
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    width: 75vw;
+    margin: auto;
+}
+
+.announcement-form {
+    background-color: #c5c5c5;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 6vh 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    margin: 2vh 2vw;
+    text-align: left;
+}
+
+
+.form-control {
+    width: 95%;
+    padding: 10px;
+    margin: 0 1vw;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 2vh;
+}
+
+.form-anuncio {
+    width: 90%;
+    min-height: 30vh;
+    height: fit-content;
+    padding: 10px;
+    margin: 5px 20px 3vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 2vh;
+}
+
+.text{
+    font-size: 1.7vh;
+}
+
+.submit-button {
+    background-color: #4f675f;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 2.2vh;
+    cursor: pointer;
+    margin: 2vh 0;
+    font-weight: bold;
+  }
+  
