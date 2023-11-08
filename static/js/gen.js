@@ -18,5 +18,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Toggle the menu when you click the close button
     closeButton.addEventListener('click', toggleMenu);
+
+    const talleresElement = document.getElementById('talleres');
+
+    // Obtener el menú desplegable por su clase
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+
+    // Agregar un controlador de eventos al elemento "Talleres"
+    talleresElement.addEventListener('click', () => {
+        // Alternar la visibilidad del menú desplegable
+        if (dropdownMenu.style.display === 'inline-block') {
+            dropdownMenu.style.display = 'none';
+        } else {
+            dropdownMenu.style.display = 'inline-block';
+        }
+    });
 });
 

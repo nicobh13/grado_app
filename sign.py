@@ -49,17 +49,6 @@ def sign():
                     contrasena=contrasena_hash
                 )
 
-                
-                if nuevo_usuario.rol.rol in ['Docente', 'Directivo']:
-
-                    if nuevo_usuario.rol.rol == 'Docente':
-                        grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDocente').first()
-                    else:
-                        grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDirectivo').first()
-
-                    if grupo:
-                        nuevo_usuario.grupo_id = grupo.id
-
                 db.session.add(nuevo_usuario)
                 db.session.commit()
                 flash('Se registró de manera exitosa', 'success')

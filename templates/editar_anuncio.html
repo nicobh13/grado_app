@@ -29,8 +29,12 @@
                     {{ form.destinatario(class="form-control text", value = anuncio_actualizar.destinatario) }}
                 </div>
                 {{ form.texto(class="form-anuncio text", value=anuncio_actualizar.texto) }}
-             
+                <div class="form-group">
                     {{ form.submit(class="submit-button text")}}
+                            <a href="{{url_for ('archivar_anuncio', id=id)}}" class="delete-button">Archivar Anuncio</a>
+        </div>
+
+                    
                 </div>
             </form>
         </div>

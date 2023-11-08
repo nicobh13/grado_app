@@ -1,7 +1,7 @@
 #Insertar roles en la base de datos
 
-from app import db  # Reemplaza "your_app" con el nombre de tu aplicación
-from app import Rol  # Reemplaza "your_app" y "models" con las ubicaciones correctas
+from config import db  # Reemplaza "your_app" con el nombre de tu aplicación
+from modelos import Rol  # Reemplaza "your_app" y "models" con las ubicaciones correctas
 
 def insertar_roles():
     roles = ['Admin', 'Estudiante', 'Docente', 'Directivo', 'Padre']

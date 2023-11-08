@@ -58,6 +58,6 @@ class Posts(db.Model):
 
 usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
-anuncios = Posts.query.order_by(Posts.fecha_editado).all()
+anuncios = Posts.query.filter(Posts.visibilidad == 1).order_by(Posts.fecha_editado).all()
 
 teachers = Usuario.query.filter((Usuario.rol_id == 3) | (Usuario.rol_id == 4)).all()

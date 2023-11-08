@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%include 'components/head_gen.html'%}
+
+    <!--Hoja de estilos-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/about.css')}}" type="text/css" />
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+
+    <title>Acerca de</title>
+</head>
+
+<body>
+    <!--Primeros elementos de la página-->
+    <header>
+        {% include 'components/banner.html' %} {% include 'components/menu.html' %}
+
+    </header>
+    <h2 class="title-font">Otros elementos</h2>
+    <div class="hor-line"></div>
+
+    <p style="max-width: 85vw;
+        width: 65vw;
+        font-size: 2vh;
+        margin: 0 17.5vw 4vh;" class="text">Para la creación de este sitio web, se pasó a través de distintas etapas,
+        las cuales definieron de manera significativa lo que ahora es nuestro sitio web. Parte de todo este proceso fue
+        la creación de elementos gráficos enfocados hacia la comunicación, ya que nuestro proyecto se basa en generar un
+        mejoramiento en este ámbito. Por eso, dentro de todos aqellos elementos, se generó la creación de la
+        pseudo-empresa <i>Red de Hermes</i>, cuyo enfoque, identidad y otros elementos se encuentran ubicados en esta
+        página, como conmemoración al trabajo realizado.</p>
+
+        <div class="container">
+                <img src="{{url_for('static', filename='images/logo.png')}}" class="logo">
+                <img src="{{url_for('static', filename='images/taza.png')}}" class="logo">
+        </div>
+
+    <iframe src="{{url_for('static', filename='manual.pdf')}}" style="height: 75vh;
+min-width: 60vw; width: 65vw; margin: 0 17.5vw 6vh;"></iframe>
+
+    {%include 'components/footer.html'%}
+</body>
+
+</html>

@@ -1,25 +1,30 @@
-            <!--Menú oculto-->
-            <div id="menu">
+<!--Menú oculto-->
+<div id="menu">
 
-                <!--Cerrar el menú-->
-                <svg xmlns="http://www.w3.org/2000/svg" height="5vh" id="close-menu"  fill: #293230
-                    viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <path
-                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
-                </svg>
-                <!--Lista de items-->
-                    <ul class="menu-hidden text">
-                        <li><a href="{{ url_for('home')}}">Inicio</a></li>
-                        <li><a href="{{ url_for('informatica')}}">Informática</a></li>
-                        <li><a href="{{ url_for('electricidad')}}">Electricidad</a></li>
-                        <li><a href="{{ url_for('dibujo')}}">Diseño Industrial</a></li>
-                        <li><a href="{{ url_for('mecanica')}}">Mecánica</a></li>
+    <!--Cerrar el menú-->
+    <svg xmlns="http://www.w3.org/2000/svg" height="5vh" id="close-menu" fill: #293230
+        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+        <path
+            d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+    </svg>
+    <!--Lista de items-->
+    <ul class="menu-hidden text">
+        <li><a href="{{ url_for('home')}}">Inicio</a></li>
+        <li id="talleres" style="cursor: pointer;">Talleres</li>
+            <ul class="dropdown-menu" style="      padding-left: 20px;
+">
+                <li><a href="{{ url_for('talleres', taller='informatica')}}">Informática</a></li>
+                <li><a href="{{ url_for('talleres', taller='electricidad')}}">Electricidad</a></li>
+                <li><a href="{{ url_for('talleres', taller='dibujo')}}">Diseño Industrial</a></li>
+                <li><a href="{{ url_for('talleres', taller='mecanica')}}">Mecánica Industrial</a></li>
+            </ul>
+        <li><a href="{{ url_for('acerca_de')}}">Acerca de</a></li>
 
-                        {% if current_user.is_authenticated and current_user.rol.rol == 'Admin' %}
-                        <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
-                        {% endif %}
-                    </ul>
+    {% if current_user.is_authenticated and current_user.rol.rol == 'Admin' %}
+    <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
+    {% endif %}
+    </ul>
 
-                    {%include 'components/sign_redir.html' %}
-            </div>
-        </div>
+    {%include 'components/sign_redir.html' %}
+</div>
+</div>

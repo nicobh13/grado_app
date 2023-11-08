@@ -62,7 +62,7 @@
             <p>Diseño y Desarrollo de Sitios Web</br></br>
               Diseño Gráfico Asistido por Computador</br></br>
               Mantenimiento Electrónico y de Computadores</br></br></br>
-              <a href="{{url_for('informatica')}}"><i><u>Ver más</u></i></a>
+              <a href="{{ url_for('talleres', taller='informatica') }}"><i><u>Ver más</u></i></a>
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@
               Autotrónica</br></br>
               Mecatrónica</br></br>
               Redes Eléctricas y Comunicaciones</br></br></br>
-              <a href="{{url_for('electricidad')}}"><i><u>Ver más</u></i></a>
+              <a href="{{ url_for('talleres', taller='electricidad') }}"><i><u>Ver más</u></i></a>
                       </div>
         </div>
 
@@ -84,7 +84,7 @@
             <p>Diseño Mecánico Asistido por Computador</br></br>
               Diseño Topográfico</br></br>
               Diseño Arquitectónico y Obras Civiles</br></br></br>
-              <a href="{{url_for('dibujo')}}"><i><u>Ver más</u></i></a>
+              <a href="{{ url_for('talleres', taller='dibujo') }}""><i><u>Ver más</u></i></a>
                       </div>
         </div>
 
@@ -93,7 +93,7 @@
           <div class="content text">
             <p>Mecánica</br></br>
               Soldadura</br></br></br>
-              <a href="{{url_for('mecanica')}}"><i><u>Ver más</u></i></a>
+              <a href="{{ url_for('talleres', taller='mecanica') }}"><i><u>Ver más</u></i></a>
                         </div>
         </div>
 
@@ -116,7 +116,7 @@
       </p>
 
       <!--Animación Vista Previa del Mapa-->
-      <div class="mapa-prev"></div>
+      <img class="mapa-prev" src="{{url_for('static', filename='images/coliseo.png')}}"></img>
     </div>
 
     <!--Sección 3: Personal-->

@@ -135,7 +135,8 @@ h2.taller {
     display: inline-block;
     width: 40vw;
     height: 50vh;
-    background-color: black;
+    object-fit: cover;
+    object-position: bottom;
 }
 
 

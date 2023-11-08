@@ -69,7 +69,7 @@ def eliminar(id):
     try: 
         usuario_eliminar.estado = 'inactivo'
         db.session.commit()
-        flash('Se eliminó el usuario', 'warning')
+        flash('Se desactivó el usuario', 'warning')
         if usuario_eliminar==current_user:
             logout_user()
         return redirect(url_for('sign', form_type='register'))

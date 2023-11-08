@@ -66,3 +66,23 @@ def editar_anuncio(id):
         
         return render_template ('editar_anuncio.html', form=form, anuncio_actualizar=anuncio_actualizar)
 
+@app.route('/archivar_anuncio/<int:id>', methods=['GET', 'POST'])
+@login_required
+def archivar_anuncio(id):
+    if current_user.rol.rol in ['Docente', 'Directivo', 'Admin']:
+        post_archivar = Posts.query.get_or_404(id)
+
+        try: 
+            post_archivar.visibilidad = '2'
+            db.session.commit()
+            flash('Se archivó el anuncio', 'warning')
+        except:
+            flash('No se pudo realizar la acción', 'error')
+            return redirect(url_for('dashboard'))
+        
+    else:
+        flash('No tienes autorización para archivar este anuncio', 'warning')
+        return redirect (url_for('dashboard'))
+
+    
+

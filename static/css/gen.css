@@ -148,7 +148,7 @@ a {
 
 #menu ul li {
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 
 #close-menu {
@@ -173,7 +173,7 @@ a {
   padding: center;
   margin: 0 auto;
   align-self: baseline;
-  font-size: 2vh;
+  font-size: 1.7vh;
   text-align: center;
   height: 5vh;
   width: 80%;
@@ -220,3 +220,8 @@ a {
     align-items: center;
     /* Vertically center content */
   }
+
+    .dropdown-menu {
+      display: none;
+    }
+  

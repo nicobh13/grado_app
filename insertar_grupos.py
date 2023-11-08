@@ -2,10 +2,12 @@ from config import db  # Reemplaza "tu_aplicacion" con el nombre real de tu apli
 from modelos import Grupos  # Reemplaza "tu_modelo" con el nombre real de tu modelo de Grupo
 
 # Define los grupos para Docentes y Directivos
+todos = Grupos(grupo='Todos')
 grupo_docentes = Grupos(grupo="Docentes")
 grupo_directivos = Grupos(grupo="Directivos")
 
 # Agrega los grupos a la base de datos
+db.session.add(todos)
 db.session.add(grupo_docentes)
 db.session.add(grupo_directivos)
 
