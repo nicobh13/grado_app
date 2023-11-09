@@ -11,18 +11,25 @@
     <ul class="menu-hidden text">
         <li><a href="{{ url_for('home')}}">Inicio</a></li>
         <li id="talleres" style="cursor: pointer;">Talleres</li>
-            <ul class="dropdown-menu" style="      padding-left: 20px;
+        <ul class="dropdown-menu" style="      padding-left: 20px;
 ">
-                <li><a href="{{ url_for('talleres', taller='informatica')}}">Informática</a></li>
-                <li><a href="{{ url_for('talleres', taller='electricidad')}}">Electricidad</a></li>
-                <li><a href="{{ url_for('talleres', taller='dibujo')}}">Diseño Industrial</a></li>
-                <li><a href="{{ url_for('talleres', taller='mecanica')}}">Mecánica Industrial</a></li>
-            </ul>
+            <li><a href="{{ url_for('talleres', taller='informatica')}}">Informática</a></li>
+            <li><a href="{{ url_for('talleres', taller='electricidad')}}">Electricidad</a></li>
+            <li><a href="{{ url_for('talleres', taller='dibujo')}}">Diseño Industrial</a></li>
+            <li><a href="{{ url_for('talleres', taller='mecanica')}}">Mecánica Industrial</a></li>
+        </ul>
+        <li id="dulces" style="cursor: pointer;">Sorteos</li>
+        <ul class="dulces-menu" style="      padding-left: 20px;
+">
+            <li><a href="{{ url_for('sorteo_dulces')}}">Dulces</a></li>
+            <li><a href="{{ url_for('sorteo_dulces')}}">Mug</a></li>
+        </ul>
+
         <li><a href="{{ url_for('acerca_de')}}">Acerca de</a></li>
 
-    {% if current_user.is_authenticated and current_user.rol.rol == 'Admin' %}
-    <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
-    {% endif %}
+        {% if current_user.is_authenticated and current_user.rol.rol == 'Admin' %}
+        <li><a href="{{ url_for('panel')}}">Panel de Control</a></li>
+        {% endif %}
     </ul>
 
     {%include 'components/sign_redir.html' %}

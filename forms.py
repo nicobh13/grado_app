@@ -91,3 +91,6 @@ class RifaForm(FlaskForm):
     tel = TelField(validators=[InputRequired(), Length(10, 
         message='Debe ingresar un número de teléfono válido')],
         render_kw={'placeholder':'Teléfono'})
+    
+    submit = SubmitField('Inscribirme al sorteo')
+

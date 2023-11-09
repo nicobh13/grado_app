@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {%include 'components/head_gen.html'%}
+
+    <!--Hoja de estilos-->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/form.css')}}" type="text/css" />
+    <!--Ícono shortcut-->
+    <link rel="shortcut icon" href="images/shortcut.png" />
+
+    <!--Javascript para el sitio-->
+
+    <title>Acerca de</title>
+</head>
+
+<body>
+    <!--Primeros elementos de la página-->
+    <header>
+        {% include 'components/banner.html' %} {% include 'components/menu.html' %}
+
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+    <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endwith %}
+  
+    <h2 class="title-font">Inscríbete y gana</h2>
+    <div class="hor-line"></div>
+
+    <p style="max-width: 85vw; width: 65vw; min-height: 10vh; font-size: 2vh; margin: 0 17.5vw 2vh;" class="text">
+        Inscríbete en este formulario para tener la posibilidad de ganar una de nuestras bolsitas de dulces.
+
+        <br><br>
+
+        Estas bolsitas serán sorteadas cada diez minutos a lo largo del día. Para participar, solo debes dejar tu nombre
+        y un número de teléfono para contactarte en caso de que ganes, todo en el formulario de abajo.
+        <br><br>
+    </p>
+    <form method="POST" style="width: 65vw; min-height: 20vh;
+    margin: auto; padding-bottom: 5vh;">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.nombre(class="input_reg text") }}
+            {{ form.tel(class="input_reg text") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="update-button text")}}
+            <a href="{{url_for ('sortear')}}" class="delete-button text">Sortear</a>
+        </div>
+    </form>
+
+    {%include 'components/footer.html'%}
+</body>
+
+</html>

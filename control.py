@@ -31,17 +31,6 @@ def user_info(id):
             nombre_actualizar.tel = request.form['tel']
             nombre_actualizar.rol_id = request.form['rol_id']
 
-            if nombre_actualizar.rol.rol in ['Docente', 'Directivo']:
-
-                if nombre_actualizar.rol.rol == 'Docente':
-                    grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDocente').first()
-                else:
-                    grupo = Grupos.query.filter_by(grupo='NombreDelGrupoDirectivo').first()
-
-                if grupo:
-                    nombre_actualizar.grupo_id = grupo.id
-            
-
             try: 
                 db.session.commit()
                 flash('Se actualizó la información exitosamente', 'success')

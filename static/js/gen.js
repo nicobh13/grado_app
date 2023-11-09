@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
     closeButton.addEventListener('click', toggleMenu);
 
     const talleresElement = document.getElementById('talleres');
-
+    const dulcesElement = document.getElementById('dulces')
     // Obtener el menú desplegable por su clase
     const dropdownMenu = document.querySelector('.dropdown-menu');
-
+    const dulcesMenu = document.querySelector('.dulces-menu');
     // Agregar un controlador de eventos al elemento "Talleres"
     talleresElement.addEventListener('click', () => {
         // Alternar la visibilidad del menú desplegable
@@ -33,5 +33,15 @@ document.addEventListener('DOMContentLoaded', function () {
             dropdownMenu.style.display = 'inline-block';
         }
     });
+
+    dulcesElement.addEventListener('click', () => {
+        // Alternar la visibilidad del menú desplegable
+        if (dulcesMenu.style.display === 'inline-block') {
+            dulcesMenu.style.display = 'none';
+        } else {
+            dulcesMenu.style.display = 'inline-block';
+        }
+    });
+
 });
 

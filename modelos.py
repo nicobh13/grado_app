@@ -67,7 +67,8 @@ class Dulces(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(50), nullable=False)
-    tel = db.Column(db.String(10), nullable=False)
+    tel = db.Column(db.String(10), nullable=False, unique = True)
+    elegible = db.Column(db.Integer, nullable = False, default = '1')
 
 usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
