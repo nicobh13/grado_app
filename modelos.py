@@ -56,6 +56,19 @@ class Posts(db.Model):
     autor = db.relationship('Usuario', foreign_keys=[autor_id])
     destino = db.relationship('Grupos', foreign_keys=[destino_id])
 
+class Mug(db.Model, UserMixin):
+    __tablename__ = 'taza'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    tel = db.Column(db.String(10), nullable=False)
+
+class Dulces(db.Model, UserMixin):
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    tel = db.Column(db.String(10), nullable=False)
+
 usuarios = Usuario.query.order_by(Usuario.estado, Usuario.apellido)
 
 anuncios = Posts.query.filter(Posts.visibilidad == 1).order_by(Posts.fecha_editado).all()
