@@ -83,3 +83,11 @@ class AnuncioForm(FlaskForm):
 
     update = SubmitField('Actualizar Anuncio')
 
+class RifaForm(FlaskForm):
+    nombre = StringField(validators=[InputRequired(), Length(
+        min=3, max=90, message='Debe tener un mínimo de 3 caracteres')]
+        , render_kw={'placeholder':'Nombre'})
+
+    tel = TelField(validators=[InputRequired(), Length(10, 
+        message='Debe ingresar un número de teléfono válido')],
+        render_kw={'placeholder':'Teléfono'})
