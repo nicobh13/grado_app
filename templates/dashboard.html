@@ -99,41 +99,11 @@
             ></i>
           </a>
         </div>
-        {% endif %} {% if anuncios %} {% for anuncio in anuncios %}
-        <div class="anuncio">
-          <div class="anuncio-header">
-            <div style="display: flex">
-              <div class="perfil-foto"></div>
-              <p class="nombre-anunciante text">
-                {{anuncio.autor.nombre}} {{anuncio.autor.seg_nombre}}
-                {{anuncio.autor.apellido}} {{anuncio.autor.seg_apellido}}
-              </p>
-            </div>
-            <div class="rol-fecha text">
-              {{anuncio.autor.rol.rol}} - {{anuncio.fecha_publicado}}
-            </div>
-          </div>
-          <div class="contenido-anuncio">
-            <!-- Aquí va el contenido del anuncio -->
-            <p class="text">{{anuncio.texto}}</p>
-          </div>
-          {% if anuncio.autor.id == current_user.id %}
-          <div class="editar-anuncio">
-            <a href="{{url_for('editar_anuncio', id=anuncio.id)}}"
-              ><i
-                class="fa-solid fa-pen-to-square fa-lg"
-                style="color: #171c1b"
-              ></i
-            ></a>
-          </div>
-          {% endif %}
-        </div>
-        {% endfor %} {% else %}
+        {% endif %} 
         <p class="text" style="margin: 20% 40%; font-size: 2vh">
           No se encontraron anuncios
         </p>
 
-        {% endif %}
       </div>
     </div>
     {%include 'components/footer.html'%}

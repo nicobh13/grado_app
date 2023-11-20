@@ -33,7 +33,7 @@ def sorteo_dulces():
             db.session.commit()
             flash('Ahora estás agregado al sorteo', 'success')
 
-        return render_template ('dulces.html', form=form)
+        return redirect (url_for('sorteo_dulces'))
     
     return render_template ('dulces.html', form=form)
 
