@@ -5,8 +5,7 @@ from flask_migrate import Migrate
 
 
 app=Flask(__name__)
-app.secret_key = 'juli2201'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://nmora:nIcollemOra12@127.0.0.1:3306/tecnico'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://usuario:contrasena@127.0.0.1:3306/tecnico'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 migrate = Migrate(app, db)

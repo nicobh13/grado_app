@@ -2,7 +2,7 @@ from config import db
 from modelos import Usuario  # Asegúrate de importar el modelo de Usuario adecuadamente
 
 # Email del usuario que se convertirá en administrador
-target_email = 'nicole.bustamante@itspereira.edu.co'
+target_email = 'usuario@promover'
 
 # Recupera el usuario basado en su dirección de correo electrónico
 user_to_promote = Usuario.query.filter_by(email=target_email).first()
